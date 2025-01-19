@@ -70,6 +70,19 @@ export class BankSystem implements IBankSystem {
   }
 
   /**
+   * Checks the balance of a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @returns {string} - The current balance or an error message.
+   */
+  checkBalance(accountId: string): string {
+    const account = this.accounts.find(acc => acc.id === accountId);
+    if (!account) {
+      return "Error: Invalid account";
+    }
+    return `Current balance: ${account.balance}`;
+  }
+
+  /**
    * Generates a unique 10-digit ID for a new bank account.
    * @returns {string} - The generated unique ID.
    */

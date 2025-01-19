@@ -39,8 +39,8 @@ export interface BankAccount {
 }
 
 /**
- * Interface representing the bank system.
- */
+   * Interface representing the bank system.
+   */
 export interface IBankSystem {
   /**
    * Creates a new bank account for a user.
@@ -64,4 +64,11 @@ export interface IBankSystem {
    * @returns {string} - A success message or an error message.
    */
   withdrawMoney(accountId: string, amount: number): string;
+
+  /**
+   * Checks the balance of a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @returns {string} - The current balance or an error message.
+   */
+  checkBalance(accountId: string): string;
 }
