@@ -4,7 +4,8 @@
   "description": "User Stories Tutorial",
   "main": "index.js",
   "scripts": {
-    "test": "npx ts-node tests/bankAccountService.ts"
+    "test": "npx ts-node tests/bankAccountService.ts",
+    "start": "npx ts-node hello.ts"
   },
   "keywords": [],
   "author": "",
