@@ -49,6 +49,27 @@ export class BankSystem implements IBankSystem {
   }
 
   /**
+   * Withdraws money from a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @param {number} amount - The amount to be withdrawn.
+   * @returns {string} - A success message or an error message.
+   */
+  withdrawMoney(accountId: string, amount: number): string {
+    const account = this.accounts.find(acc => acc.id === accountId);
+    if (!account) {
+      return "Error: Invalid account";
+    }
+    if (amount <= 0) {
+      return "Error: Invalid withdrawal amount";
+    }
+    if (amount > account.balance) {
+      return "Error: Insufficient funds";
+    }
+    account.balance -= amount;
+    return `Withdrawal successful. New balance: ${account.balance}`;
+  }
+
+  /**
    * Generates a unique 10-digit ID for a new bank account.
    * @returns {string} - The generated unique ID.
    */

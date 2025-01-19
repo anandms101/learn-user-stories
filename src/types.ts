@@ -56,4 +56,12 @@ export interface IBankSystem {
    * @returns {string} - A success message or an error message.
    */
   depositMoney(accountId: string, amount: number): string;
+
+  /**
+   * Withdraws money from a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @param {number} amount - The amount to be withdrawn.
+   * @returns {string} - A success message or an error message.
+   */
+  withdrawMoney(accountId: string, amount: number): string;
 }

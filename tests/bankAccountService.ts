@@ -37,6 +37,21 @@ const testDepositMoney = (accountId: string, amount: number, expected: string) =
 };
 
 /**
+ * Function to test withdrawing money from a bank account.
+ * @param {string} accountId - The ID of the account.
+ * @param {number} amount - The amount to be withdrawn.
+ * @param {string} expected - The expected result of the withdrawal.
+ */
+const testWithdrawMoney = (accountId: string, amount: number, expected: string) => {
+  const result = bankSystem.withdrawMoney(accountId, amount);
+  console.log(
+    `Test withdrawal from account ${accountId}: ${
+      result === expected ? "Passed" : "Failed"
+    }`
+  );
+};
+
+/**
  * Test user who is verified and over 18.
  */
 const user1: User = { username: "john_doe", age: 20, isVerified: true };
@@ -64,6 +79,12 @@ if (typeof account1 === "object") {
   testDepositMoney(account1.id, 100, "Deposit successful. New balance: 100"); // Should pass
   testDepositMoney(account1.id, -50, "Error: Invalid deposit amount"); // Should pass
   testDepositMoney("invalid_id", 100, "Error: Invalid account"); // Should pass
+
+  // Test withdraw money
+  testWithdrawMoney(account1.id, 50, "Withdrawal successful. New balance: 50"); // Should pass
+  testWithdrawMoney(account1.id, -50, "Error: Invalid withdrawal amount"); // Should pass
+  testWithdrawMoney(account1.id, 200, "Error: Insufficient funds"); // Should pass
+  testWithdrawMoney("invalid_id", 50, "Error: Invalid account"); // Should pass
 }
 
 console.log("Tests completed.");
