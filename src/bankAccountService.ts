@@ -1,9 +1,9 @@
-import { User, BankAccount } from "./types";
+import { User, BankAccount, IBankSystem } from "./types";
 
 /**
  * Class representing a bank system.
  */
-export class BankSystem {
+export class BankSystem implements IBankSystem {
   private accounts: BankAccount[] = [];
 
   /**
@@ -28,6 +28,24 @@ export class BankSystem {
 
     this.accounts.push(newAccount);
     return newAccount;
+  }
+
+  /**
+   * Deposits money into a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @param {number} amount - The amount to be deposited.
+   * @returns {string} - A success message or an error message.
+   */
+  depositMoney(accountId: string, amount: number): string {
+    const account = this.accounts.find(acc => acc.id === accountId);
+    if (!account) {
+      return "Error: Invalid account";
+    }
+    if (amount <= 0) {
+      return "Error: Invalid deposit amount";
+    }
+    account.balance += amount;
+    return `Deposit successful. New balance: ${account.balance}`;
   }
 
   /**

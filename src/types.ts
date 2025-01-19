@@ -37,3 +37,23 @@ export interface BankAccount {
    */
   owner: User;
 }
+
+/**
+ * Interface representing the bank system.
+ */
+export interface IBankSystem {
+  /**
+   * Creates a new bank account for a user.
+   * @param {User} user - The user for whom the account is being created.
+   * @returns {BankAccount | string} - The created bank account or an error message.
+   */
+  createAccount(user: User): BankAccount | string;
+
+  /**
+   * Deposits money into a bank account.
+   * @param {string} accountId - The ID of the account.
+   * @param {number} amount - The amount to be deposited.
+   * @returns {string} - A success message or an error message.
+   */
+  depositMoney(accountId: string, amount: number): string;
+}
